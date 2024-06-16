@@ -5,6 +5,7 @@ import model.dao.ProductDaoImpl;
 import model.entity.Customer;
 import model.entity.Order;
 import model.entity.Product;
+import view.Menu;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -69,21 +70,21 @@ public class Main {
 //          new OrderDaoImpl()
 //                  .updateOrderById(4);
 
-            new OrderDaoImpl()
-                    .addNewOrder(Order.builder()
-                            .id(1)
-                            .orderName("ទឹកផ្លែឈើ")
-                            .orderDescription("ផលិតផលខ្មែរ")
-                            .orderedAt(Date.valueOf(LocalDate.now()))
-                            .customer(Customer.builder()
-                                    .id(2)
-                                    .build())
-                            .productList(new ArrayList<>(
-                                    List.of(Product.builder()
-                                                    .id(2)
-                                            .build())
-                            ))
-                            .build());
+//            new OrderDaoImpl()
+//                    .addNewOrder(Order.builder()
+//                            .id(1)
+//                            .orderName("ទឹកផ្លែឈើ")
+//                            .orderDescription("ផលិតផលខ្មែរ")
+//                            .orderedAt(Date.valueOf(LocalDate.now()))
+//                            .customer(Customer.builder()
+//                                    .id(2)
+//                                    .build())
+//                            .productList(new ArrayList<>(
+//                                    List.of(Product.builder()
+//                                                    .id(2)
+//                                            .build())
+//                            ))
+//                            .build());
 
 //        new ProductDaoImpl()
 //                .addNewProduct(Product
@@ -108,7 +109,7 @@ public class Main {
 //                .deleteProduct(1);
 
 
-
+        Menu.mainMenu();
 
 
     }
