@@ -16,7 +16,7 @@ public class Customer {
     private Integer id;
     private String name;
     private String email;
-    private String passWord;
+    private String password;
     private Boolean isDeleted;
     private Date createdDate;
 }
