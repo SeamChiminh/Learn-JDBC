@@ -1,116 +1,209 @@
-import model.dao.CustomerDaoImpl;
-import model.dao.OrderDaoImpl;
-import model.dao.ProductDao;
-import model.dao.ProductDaoImpl;
+import controller.CustomerController;
+import controller.OrderController;
+import controller.ProductController;
+import model.dto.CustomerDto;
+import model.dto.OrderDto;
+import model.dto.ProductDto;
 import model.entity.Customer;
-import model.entity.Order;
-import model.entity.Product;
 import view.Menu;
-
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
+    private static void handleMenuProduct(ProductController productController ,Scanner sc) {
+        while (true)
+        {
+            switch (Menu.productMenu())
+            {
+                case 1:
+                    System.out.println("Input product code: ");
+                    String pCode = sc.nextLine();
+
+                    System.out.println("Input product name: ");
+                    String pName = sc.nextLine();
+
+                    System.out.println("Input product price: ");
+                    String pDescription = sc.nextLine();
+
+                    Date pImportDate = Date.valueOf(LocalDate.now());
+                    Date pExpireDate = Date.valueOf(
+                            LocalDate.of(
+                                    2025,12,31
+                            ));
+
+                    productController.AddNewProduct(
+                            new ProductDto(
+                                    pCode,pName,false, pImportDate, pExpireDate, pDescription
+                            ));
+                    break;
+                case 2:
+                    productController.queryAllProduct().forEach(System.out::println);
+                    break;
+                case 3:
+                    System.out.println("Input id to search product: ");
+                    Integer id = sc.nextInt();
+                    productController.searchProductById(id);
+                    break;
+                case 4:
+                    System.out.println("Input id to update product: ");
+                    Integer updateId = sc.nextInt();
+                    productController.updateProductById(updateId);
+                    break;
+                case 5:
+                    System.out.println("Input id to delete product: ");
+                    Integer deleteId = sc.nextInt();
+                    productController.deleteProductById(deleteId);
+                    break;
+                case 0: return;
+                default:
+                    System.out.println("invalid input, please try again");
+            }
+        }
+    }
+
+    private static void handleMenuCustomer(CustomerController customerController ,Scanner sc) {
+        while (true)
+        {
+            switch (Menu.customerMenu()){
+                case 1:
+                    System.out.println("Input customer Id: ");
+                    Integer cId = sc.nextInt();
+                    System.out.println("Input customer name: ");
+                    String cName = sc.nextLine();
+
+                    System.out.println("Input customer email: ");
+                    String cEmail = sc.nextLine();
+
+                    customerController.addNewCustomer(new CustomerDto(cId,cName,cEmail));
+                    break;
+
+                case 2:
+                    customerController.queryAllCustomers()
+                            .forEach(System.out::println);
+                    break;
+
+                case 3:
+                    System.out.println("Input id to search customer: ");
+                    Integer sId = sc.nextInt();
+                    customerController.searchCustomerById(sId);
+                    break;
+
+                case 4:
+                    System.out.println("Input id to delete customer: ");
+                    Integer dId = sc.nextInt();
+                    customerController.deleteCustomerById(dId);
+                    break;
+
+                case 5:
+                    System.out.println("Input id to update customer: ");
+                    Integer uId = sc.nextInt();
+                    customerController.updateCustomerById(uId);
+                    break;
+                case 0:
+                    return;
+
+                default:
+                    System.out.println("invalid input, please try again");
+
+            }
+
+        }
+    }
+
+    private static void handleMenuOrder(OrderController orderController, Scanner sc)
+    {
+        while (true)
+        {
+            switch (Menu.orderMenu()){
+                case 1:
+                    System.out.println("Input order name: ");
+                    String orName = sc.nextLine();
+
+                    System.out.println("Input order description: ");
+                    String ordes = sc.nextLine();
+
+                    System.out.println("Input Customer id: ");
+                    Integer orCusId = sc.nextInt();
+
+                    Date orderDate = Date.valueOf(LocalDate.now());
+                    Customer customer = Customer.builder()
+                            .id(orCusId)
+                            .build();
+                    orderController.AddNewOrder(new OrderDto(
+                            orName, ordes, customer, orderDate
+                    ));
+
+                    break;
+
+                case 2:
+                    orderController.queryAllOrders()
+                            .forEach(System.out::println);
+                    break;
+
+                case 3:
+                    System.out.println("Input id to search order: ");
+                    Integer sId = sc.nextInt();
+                    orderController.searchOrderById(sId);
+                    break;
+
+                case 4:
+                    System.out.println("Input id to update order: ");
+                    Integer uId = sc.nextInt();
+                    orderController.updateOrderById(uId);
+                    break;
+
+                case 5:
+                    System.out.println("Input id to delete order: ");
+                    Integer dId = sc.nextInt();
+                    orderController.deleteOrderById(dId);
+                    break;
+                case 0:
+                    return;
+
+                default:
+                    System.out.println("invalid input, please try again");
+
+            }
+        }
+    }
+
     public static void main(String[] args) {
-//        new CustomerDaoImpl()
-//                .addNewCustomer(new Customer(
-//                        3,
-//                        "panha",
-//                        "panha012@gmail.com",
-//                        "@#$%",
-//                        false,
-//                        Date.valueOf(LocalDate.now())
-//                ));
+        ProductController productController = new ProductController();
+        CustomerController customerController = new CustomerController();
+        OrderController orderController = new OrderController();
 
-//        new CustomerDaoImpl()
-//                .addNewCustomer(
-//                        Customer.builder()
-//                                .id(1)
-//                                .name("sear")
-//                                .email("sear@sear.com")
-//                                .password("!#$%#")
-//                                .isDeleted(false)
-//                                .createdDate(Date.valueOf(LocalDate.now()))
-//                                .build()
-//                );
+        Scanner sc = new Scanner(System.in);
 
-//        new CustomerDaoImpl()
-//                .queryAllCustomers()
-//                .forEach(System.out::println);
+        while (true)
+        {
+            try{
+                switch (Menu.mainMenu())
+                {
+                    case 1:
+                        handleMenuCustomer(customerController, sc);
+                        break;
 
-//        new CustomerDaoImpl()
-//                .deleteCustomerById(1);
+                    case 2:
+                        handleMenuProduct(productController, sc);
+                        break;
 
-//        new CustomerDaoImpl()
-//                .updateCustomerById(10);
+                    case 3:
+                        handleMenuOrder(orderController, sc);
+                        break;
 
-//        new OrderDaoImpl()
-//                .addNewOrder(
-//                        Order.builder()
-//                                .id(1)
-//                                .orderName("hot pot")
-//                                .orderDescription("hot pot kilo let 7")
-//                                .customer(
-//                                        Customer.builder()
-//                                                .id(2)
-//                                        .build())
-//                                .orderedAt(Date.valueOf(LocalDate.of(2000,6,7)))
-//                        .build());
+                    case 0:
+                        System.exit(0);
+                        break;
 
-
-//        new OrderDaoImpl()
-//                .queryAllOrders()
-//                .forEach(System.out::println);
-
-//        new OrderDaoImpl()
-//                .deleteOrderById(3);
-
-//          new OrderDaoImpl()
-//                  .updateOrderById(4);
-
-//            new OrderDaoImpl()
-//                    .addNewOrder(Order.builder()
-//                            .id(1)
-//                            .orderName("ទឹកផ្លែឈើ")
-//                            .orderDescription("ផលិតផលខ្មែរ")
-//                            .orderedAt(Date.valueOf(LocalDate.now()))
-//                            .customer(Customer.builder()
-//                                    .id(2)
-//                                    .build())
-//                            .productList(new ArrayList<>(
-//                                    List.of(Product.builder()
-//                                                    .id(2)
-//                                            .build())
-//                            ))
-//                            .build());
-
-//        new ProductDaoImpl()
-//                .addNewProduct(Product
-//                        .builder()
-//                        .id(1)
-//                        .productName("vital")
-//                        .productCode("002")
-//                        .isDeleted(false)
-//                        .importAt(Date.valueOf(LocalDate.now()))
-//                        .expiredAt(Date.valueOf(LocalDate.of(2026,2,5)))
-//                        .productDescription("buy 1 free 1")
-//                        .build());
-
-//        new ProductDaoImpl()
-//                .queryAllProducts()
-//                .forEach(System.out::println);
-
-//        new ProductDaoImpl()
-//                .updateProduct(1);
-
-//        new ProductDaoImpl()
-//                .deleteProduct(1);
-
-
-        Menu.mainMenu();
-
-
+                    default:
+                        System.out.println("invalid input, please try again");
+                }
+            }catch (Exception exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
+
