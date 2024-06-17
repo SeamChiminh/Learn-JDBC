@@ -17,14 +17,11 @@ public class Main {
             switch (Menu.productMenu())
             {
                 case 1:
-                    System.out.println("Input product code: ");
+                    System.out.print("Input product code: ");
                     String pCode = sc.nextLine();
 
-                    System.out.println("Input product name: ");
+                    System.out.print("Input product name: ");
                     String pName = sc.nextLine();
-
-                    System.out.println("Input product price: ");
-                    String pDescription = sc.nextLine();
 
                     Date pImportDate = Date.valueOf(LocalDate.now());
                     Date pExpireDate = Date.valueOf(
@@ -41,17 +38,17 @@ public class Main {
                     productController.queryAllProduct().forEach(System.out::println);
                     break;
                 case 3:
-                    System.out.println("Input id to search product: ");
+                    System.out.print("Input id to search product: ");
                     Integer id = sc.nextInt();
                     productController.searchProductById(id);
                     break;
                 case 4:
-                    System.out.println("Input id to update product: ");
+                    System.out.print("Input id to update product: ");
                     Integer updateId = sc.nextInt();
                     productController.updateProductById(updateId);
                     break;
                 case 5:
-                    System.out.println("Input id to delete product: ");
+                    System.out.print("Input id to delete product: ");
                     Integer deleteId = sc.nextInt();
                     productController.deleteProductById(deleteId);
                     break;
@@ -67,12 +64,13 @@ public class Main {
         {
             switch (Menu.customerMenu()){
                 case 1:
-                    System.out.println("Input customer Id: ");
+                    System.out.print("Input customer Id: ");
                     Integer cId = sc.nextInt();
-                    System.out.println("Input customer name: ");
+                    sc.nextLine();
+                    System.out.print("Input customer name: ");
                     String cName = sc.nextLine();
 
-                    System.out.println("Input customer email: ");
+                    System.out.print("Input customer email: ");
                     String cEmail = sc.nextLine();
 
                     customerController.addNewCustomer(new CustomerDto(cId,cName,cEmail));
@@ -84,19 +82,19 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Input id to search customer: ");
+                    System.out.print("Input id to search customer: ");
                     Integer sId = sc.nextInt();
                     customerController.searchCustomerById(sId);
                     break;
 
                 case 4:
-                    System.out.println("Input id to delete customer: ");
+                    System.out.print("Input id to delete customer: ");
                     Integer dId = sc.nextInt();
                     customerController.deleteCustomerById(dId);
                     break;
 
                 case 5:
-                    System.out.println("Input id to update customer: ");
+                    System.out.print("Input id to update customer: ");
                     Integer uId = sc.nextInt();
                     customerController.updateCustomerById(uId);
                     break;
@@ -117,13 +115,13 @@ public class Main {
         {
             switch (Menu.orderMenu()){
                 case 1:
-                    System.out.println("Input order name: ");
+                    System.out.print("Input order name: ");
                     String orName = sc.nextLine();
 
-                    System.out.println("Input order description: ");
+                    System.out.print("Input order description: ");
                     String ordes = sc.nextLine();
 
-                    System.out.println("Input Customer id: ");
+                    System.out.print("Input Customer id: ");
                     Integer orCusId = sc.nextInt();
 
                     Date orderDate = Date.valueOf(LocalDate.now());
@@ -142,19 +140,19 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Input id to search order: ");
+                    System.out.print("Input id to search order: ");
                     Integer sId = sc.nextInt();
                     orderController.searchOrderById(sId);
                     break;
 
                 case 4:
-                    System.out.println("Input id to update order: ");
+                    System.out.print("Input id to update order: ");
                     Integer uId = sc.nextInt();
                     orderController.updateOrderById(uId);
                     break;
 
                 case 5:
-                    System.out.println("Input id to delete order: ");
+                    System.out.print("Input id to delete order: ");
                     Integer dId = sc.nextInt();
                     orderController.deleteOrderById(dId);
                     break;
@@ -192,7 +190,10 @@ public class Main {
                         handleMenuOrder(orderController, sc);
                         break;
 
-                    case 0:
+                    case 99:
+                        System.out.println("+" + "~".repeat(50) + "+");
+                        System.out.println("Exiting program!");
+                        System.out.println("+" + "~".repeat(50) + "+");
                         System.exit(0);
                         break;
 

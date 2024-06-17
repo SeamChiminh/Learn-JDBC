@@ -1,6 +1,10 @@
 package model.dao;
 
 import model.entity.Customer;
+import org.nocrala.tools.texttablefmt.BorderStyle;
+import org.nocrala.tools.texttablefmt.CellStyle;
+import org.nocrala.tools.texttablefmt.ShownBorders;
+import org.nocrala.tools.texttablefmt.Table;
 
 import java.sql.*;
 import java.util.ArrayList;
