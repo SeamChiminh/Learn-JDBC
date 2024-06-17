@@ -68,11 +68,12 @@ public class ProductDaoImpl implements ProductDao {
             Product product = searchProductById(id);
             if( product != null)
             {
-                System.out.println("[+] Insert ProductName: ");
+                System.out.print("[+] Insert ProductName: ");
                 preparedStatement.setString(1,new Scanner(System.in).nextLine());
-                System.out.println("[+] Insert ProductDescription: ");
+                System.out.print("[+] Insert ProductDescription: ");
                 preparedStatement.setString(2,new Scanner(System.in).nextLine());
                 preparedStatement.setInt(3,id);
+                System.out.println("+" + "~".repeat(50) + "+");
 
                 int rowAffected = preparedStatement.executeUpdate();
                 String message = rowAffected > 0 ? "Update successfully" : "update failed";
@@ -84,6 +85,7 @@ public class ProductDaoImpl implements ProductDao {
                 System.out.println("product not found");
                 System.out.println("+" + "~".repeat(50) + "+");
             }
+
 
         }catch (SQLException sqlException)
         {
@@ -191,6 +193,7 @@ public class ProductDaoImpl implements ProductDao {
             Product product = null;
             while (resultSet.next())
             {
+                System.out.println("+" + "~".repeat(50) + "+");
                 product = Product.builder()
                         .id(resultSet.getInt("id"))
                         .productName(resultSet.getString("product_name"))
@@ -200,6 +203,7 @@ public class ProductDaoImpl implements ProductDao {
                         .expiredAt(resultSet.getDate("expired_at"))
                         .productDescription(resultSet.getString("product_description"))
                         .build();
+                System.out.println("+" + "~".repeat(50) + "+");
             }
             return product;
 

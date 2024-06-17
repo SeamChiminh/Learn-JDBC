@@ -34,7 +34,7 @@ public class Main {
 
                     productController.AddNewProduct(
                             new ProductDto(
-                                    pCode,pName,false, pImportDate, pExpireDate,pDesc
+                                    pName,pCode,false, pImportDate, pExpireDate,pDesc
                             ));
                     break;
 

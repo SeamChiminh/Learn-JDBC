@@ -23,8 +23,8 @@ public class Menu {
                 "[1]. Add New Product" + "\n" +
                         "[2]. List All Products" + "\n" +
                         "[3]. Search Product By ID" + "\n" +
-                        "[4]. Delete Product By ID" + "\n" +
-                        "[5]. Update Product By ID" + "\n" +
+                        "[4]. Update Product By ID" + "\n" +
+                        "[5]. Delete Product By ID" + "\n" +
                         "[0]. Back to Main Menu"
         );
         System.out.println("+" + "~".repeat(50) + "+");
