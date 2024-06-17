@@ -1,6 +1,11 @@
 package model.dto;
 
-import java.util.Date;
+import lombok.Builder;
+
+import java.sql.Date;
+
+
+@Builder
 
 public record ProductDto(
         String productName,

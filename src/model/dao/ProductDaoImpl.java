@@ -49,7 +49,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public int updateProduct(Integer id) {
+    public int updateProductById(Integer id) {
         String sql = """
                 UPDATE "product"
                 SET  product_name = ?, product_description = ?
@@ -89,7 +89,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public int addNewProduct(Product product) {
+    public int addNewProductByid(Product product) {
         String sql = """
                     INSERT INTO "product" (product_name, product_code, is_deleted, imported_at, expired_at, product_description)
                     VALUES (?, ?, ?, ?, ?, ?)
@@ -125,7 +125,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public int deleteProduct(Integer id) {
+    public int deleteProductByid(Integer id) {
         String sql = """
                 DELETE FROM "product"
                 WHERE id = ?
@@ -134,9 +134,9 @@ public class ProductDaoImpl implements ProductDao {
         try(
                 Connection connection = DriverManager.getConnection(
 
-                    "jdbc:postgresql://localhost:5432/postgres",
-                    "postgres",
-                    "1234"
+                        "jdbc:postgresql://localhost:5432/postgres",
+                        "postgres",
+                        "1234"
                 );
                 PreparedStatement preparedStatement = connection.prepareStatement(sql)
         ){

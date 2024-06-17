@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ProductDao {
     List<Product> queryAllProducts();
-    int updateProduct(Integer id);
-    int addNewProduct(Product product);
-    int deleteProduct(Integer id);
+    int updateProductById(Integer id);
+    int addNewProductByid(Product product);
+    int deleteProductByid(Integer id);
     Product searchProductById(Integer id);
 }

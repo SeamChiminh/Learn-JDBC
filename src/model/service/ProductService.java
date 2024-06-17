@@ -6,7 +6,7 @@ import model.entity.Product;
 import java.util.List;
 
 public interface ProductService {
-    List<Product> queryAllProducts();
+    List<ProductDto> queryAllProducts();
     Product updateProductById(Integer id);
     Product deleteProductById(Integer id);
     void addNewProduct(ProductDto productDto);
