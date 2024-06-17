@@ -23,6 +23,9 @@ public class Main {
                     System.out.print("Input product name: ");
                     String pName = sc.nextLine();
 
+                    System.out.print("Input description: ");
+                    String pDesc = sc.nextLine();
+
                     Date pImportDate = Date.valueOf(LocalDate.now());
                     Date pExpireDate = Date.valueOf(
                             LocalDate.of(
@@ -31,30 +34,39 @@ public class Main {
 
                     productController.AddNewProduct(
                             new ProductDto(
-                                    pCode,pName,false, pImportDate, pExpireDate, pDescription
+                                    pCode,pName,false, pImportDate, pExpireDate,pDesc
                             ));
                     break;
+
                 case 2:
                     productController.queryAllProduct().forEach(System.out::println);
                     break;
+
                 case 3:
                     System.out.print("Input id to search product: ");
                     Integer id = sc.nextInt();
                     productController.searchProductById(id);
                     break;
+
                 case 4:
                     System.out.print("Input id to update product: ");
                     Integer updateId = sc.nextInt();
                     productController.updateProductById(updateId);
                     break;
+
                 case 5:
                     System.out.print("Input id to delete product: ");
                     Integer deleteId = sc.nextInt();
                     productController.deleteProductById(deleteId);
                     break;
-                case 0: return;
+
+                case 0:
+                    return;
+
                 default:
+                    System.out.println("+" + "~".repeat(50) + "+");
                     System.out.println("invalid input, please try again");
+                    System.out.println("+" + "~".repeat(50) + "+");
             }
         }
     }
@@ -102,7 +114,9 @@ public class Main {
                     return;
 
                 default:
+                    System.out.println("+" + "~".repeat(50) + "+");
                     System.out.println("invalid input, please try again");
+                    System.out.println("+" + "~".repeat(50) + "+");
 
             }
 
@@ -119,7 +133,7 @@ public class Main {
                     String orName = sc.nextLine();
 
                     System.out.print("Input order description: ");
-                    String ordes = sc.nextLine();
+                    String orDes = sc.nextLine();
 
                     System.out.print("Input Customer id: ");
                     Integer orCusId = sc.nextInt();
@@ -129,7 +143,7 @@ public class Main {
                             .id(orCusId)
                             .build();
                     orderController.AddNewOrder(new OrderDto(
-                            orName, ordes, customer, orderDate
+                            orName, orDes, customer, orderDate
                     ));
 
                     break;
@@ -160,7 +174,9 @@ public class Main {
                     return;
 
                 default:
+                    System.out.println("+" + "~".repeat(50) + "+");
                     System.out.println("invalid input, please try again");
+                    System.out.println("+" + "~".repeat(50) + "+");
 
             }
         }
@@ -198,7 +214,9 @@ public class Main {
                         break;
 
                     default:
+                        System.out.println("+" + "~".repeat(50) + "+");
                         System.out.println("invalid input, please try again");
+                        System.out.println("+" + "~".repeat(50) + "+");
                 }
             }catch (Exception exception)
             {

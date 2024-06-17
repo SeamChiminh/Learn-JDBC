@@ -76,9 +76,13 @@ public class ProductDaoImpl implements ProductDao {
 
                 int rowAffected = preparedStatement.executeUpdate();
                 String message = rowAffected > 0 ? "Update successfully" : "update failed";
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println(message);
+                System.out.println("+" + "~".repeat(50) + "+");
             }else {
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("product not found");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
         }catch (SQLException sqlException)
@@ -112,9 +116,13 @@ public class ProductDaoImpl implements ProductDao {
 
             int rowAffected = preparedStatement.executeUpdate();
             if(rowAffected>0){
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("Product added successfully");
+                System.out.println("+" + "~".repeat(50) + "+");
             }else{
-                System.out.println("Product not added");
+                System.out.println("+" + "~".repeat(50) + "+");
+                System.out.println("[!] Product not added");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
         }catch(SQLException sqlException)
@@ -143,11 +151,15 @@ public class ProductDaoImpl implements ProductDao {
             Product product = searchProductById(id);
             if( product == null)
             {
-                System.out.println("cannot delete product");
+                System.out.println("+" + "~".repeat(50) + "+");
+                System.out.println("[!] cannot delete product");
+                System.out.println("+" + "~".repeat(50) + "+");
             }else{
                 preparedStatement.setInt(1, id);
                 int rowAffected = preparedStatement.executeUpdate();
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("Product deleted successfully");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
         }catch (SQLException sqlException)

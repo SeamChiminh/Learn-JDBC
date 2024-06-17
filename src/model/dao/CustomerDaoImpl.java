@@ -72,19 +72,23 @@ public class CustomerDaoImpl implements CustomerDao {
             Customer customer = searchCustomerById(id);
             if( customer != null)
             {
-                System.out.println("[+] Insert name: ");
+                System.out.print("[+] Insert name: ");
                 preparedStatement.setString(1, new Scanner(System.in).next());
-                System.out.println("[+] Insert email: ");
+                System.out.print("[+] Insert email: ");
                 preparedStatement.setString(2, new Scanner(System.in).next());
                 preparedStatement.setInt(3, id);
                 
                 int rowAffected = preparedStatement.executeUpdate();
                 String message = rowAffected > 0 ? "Update successfully" : "update failed";
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println(message);
+                System.out.println("+" + "~".repeat(50) + "+");
 
             }
             else {
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("customer not found");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
         }catch (SQLException sqlException)
@@ -118,7 +122,9 @@ public class CustomerDaoImpl implements CustomerDao {
             }else {
                 preparedStatement.setInt(1, id);
                 int rowAffected = preparedStatement.executeUpdate();
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("Delete successfully");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
         }catch (SQLException sqlException)
@@ -153,7 +159,9 @@ public class CustomerDaoImpl implements CustomerDao {
         int rowAffected = preparedStatement.executeUpdate();
         if(rowAffected > 0)
         {
+            System.out.println("+" + "~".repeat(50) + "+");
             System.out.println("ជោគជ័យហើយ!");
+            System.out.println("+" + "~".repeat(50) + "+");
         }
 
         }catch (SQLException sqlException)

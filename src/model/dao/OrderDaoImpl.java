@@ -38,7 +38,9 @@ public class OrderDaoImpl implements OrderDao{
 
             int rowAffected = preparedStatement.executeUpdate();
             String message = rowAffected > 0? "insert order successfully" : "insert order failed";
+            System.out.println("+" + "~".repeat(50) + "+");
             System.out.println(message);
+            System.out.println("+" + "~".repeat(50) + "+");
 
             //product_order
             for(Product product: order.getProductList()){
@@ -48,9 +50,13 @@ public class OrderDaoImpl implements OrderDao{
 
             int rowAffected1 = preparedStatement1.executeUpdate();
             if(rowAffected1 > 0){
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("Product has been ordered");
+                System.out.println("+" + "~".repeat(50) + "+");
             }else{
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("Product out of stock");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
         }catch (SQLException sqlException)
@@ -81,10 +87,14 @@ public class OrderDaoImpl implements OrderDao{
                 preparedStatement.setInt(1, order.getId());
                 int rowAffected = preparedStatement.executeUpdate();
                 String message = rowAffected > 0? "delete successfully" : "delete failed";
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println(message);
+                System.out.println("+" + "~".repeat(50) + "+");
                 return rowAffected;
             }else{
+                System.out.println("+" + "~".repeat(50) + "+");
                 System.out.println("Order not found");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
 
 
@@ -123,14 +133,20 @@ public class OrderDaoImpl implements OrderDao{
                 int rowAffected = preparedStatement.executeUpdate();
                 if(rowAffected > 0)
                 {
+                    System.out.println("+" + "~".repeat(50) + "+");
                     System.out.println("Update successfully.");
+                    System.out.println("+" + "~".repeat(50) + "+");
                     return rowAffected;
                 }
                 else {
-                    System.out.println("Update failed");
+                    System.out.println("+" + "~".repeat(50) + "+");
+                    System.out.println("[!] Update failed");
+                    System.out.println("+" + "~".repeat(50) + "+");
                 }
             }else{
-                System.out.println("order not found");
+                System.out.println("+" + "~".repeat(50) + "+");
+                System.out.println("[!] order not found");
+                System.out.println("+" + "~".repeat(50) + "+");
             }
         }catch (SQLException sqlException)
         {
